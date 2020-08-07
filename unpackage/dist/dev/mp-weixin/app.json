@@ -1,0 +1,19 @@
+{
+  "pages": [
+    "pages/index/index",
+    "components/search/search"
+  ],
+  "subPackages": [],
+  "window": {
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "uni-app",
+    "navigationBarBackgroundColor": "#000000",
+    "backgroundColor": "#FFFFFF"
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "我的天气要拿你的定位谢谢"
+    }
+  },
+  "usingComponents": {}
+}

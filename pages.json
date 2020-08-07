@@ -1,12 +1,21 @@
 {
 	"pages": [{
-		"path": "pages/index/index"
-		// "style": {
-		// 	"navigationBarTitleText": "uni-ui基础项目"
-		// }
-	}],
+		"path": "pages/index/index",
+		"style": {
+			/* #ifdef MP-WEIXIN */
+			"navigationBarTitleText": "天气"
+			/* #endif */
+		}
+		
+	}   ,{
+            "path" : "components/search/search",
+            "style" : {}
+        }
+    ],
 	"globalStyle": {
+		/* #ifdef H5 */
 		"navigationStyle":"custom",
+		/* #endif */
 		"navigationBarTextStyle": "white",
 		"navigationBarTitleText": "uni-app",
 		"navigationBarBackgroundColor": "#000000",

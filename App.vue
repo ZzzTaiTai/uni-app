@@ -13,6 +13,10 @@ export default {
 </script>
 
 <style>
+body{
+	background-color: rgba(0,0,0,.1);
+}
+
 /* 解决头条小程序组件内引入字体不生效的问题 */
 /* #ifdef MP-TOUTIAO */
 @font-face {
@@ -20,4 +24,6 @@ export default {
 	src: url('/static/uni.ttf');
 }
 /* #endif */
+
 </style>
+
