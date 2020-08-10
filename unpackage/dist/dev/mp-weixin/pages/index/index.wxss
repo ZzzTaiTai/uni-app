@@ -36,6 +36,9 @@
 .mr10.data-v-57280228 {
   margin-right: 10px;
 }
+.container.data-v-57280228 {
+  position: relative;
+}
 .container .section-main.data-v-57280228 {
   position: relative;
   height: 1000rpx;
@@ -204,8 +207,14 @@
 .container .section-box.sec-days .scroll-view-item .weather-item .temp.data-v-57280228 {
   display: block;
 }
+.container .section-box.sec-life.data-v-57280228 {
+  background-color: transparent;
+  border-bottom: 0;
+}
 .container .section-box.sec-life .life-swiper.data-v-57280228 {
   height: 230px;
+  background: #fff;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.3);
 }
 .container .section-box.sec-life .item.data-v-57280228 {
   display: -webkit-box;
@@ -252,5 +261,20 @@
   width: 1000rpx;
   height: 300rpx;
   background-color: #FFFFFF;
+}
+.container .section-box .lifeDot.data-v-57280228 {
+  height: 20px;
+}
+.life-swiper.data-v-57280228 {
+  /* wx */
+}
+.life-swiper wx-swiper .wx-swiper-dot.data-v-57280228 {
+  width: 10px;
+  height: 3px;
+}
+.life-swiper wx-swiper .wx-swiper-dot-active.data-v-57280228 {
+  background-color: #000;
+  width: 20px;
+  border-radius: 5px;
 }
 

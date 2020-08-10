@@ -1,4 +1,8 @@
 {
   "navigationBarTitleText": "天气",
-  "usingComponents": {}
+  "usingComponents": {
+    "uni-swiper-dot": "/components/uni-swiper-dot/uni-swiper-dot",
+    "search": "/components/search/search",
+    "weather-pop": "/components/weatherPop"
+  }
 }

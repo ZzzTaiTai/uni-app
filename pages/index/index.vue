@@ -155,25 +155,34 @@
 
 			</scroll-view>
 		</view>
+		<uni-swiper-dot class="lifeDot" :info="newLifeInfo" :current="lifeIndex" mode="default" :dotsStyles="lifeDotsStyles">
 		<view class="section-box sec-life mt10">
-			<swiper class="life-swiper" v-if="newLifeInfo" :indicator-dots="true" :autoplay="true" :interval="3000" :duration="1000">
+			
+			<swiper class="life-swiper" v-if="newLifeInfo" circular="true" autoplay="true" interval="3000" duration="1000" indicator-color="#E3E3E3" indicator-active-color="#cecece" @change="changeCur">
 				<swiper-item class="item" v-for="(items,itemIndex) in newLifeInfo" :key="itemIndex">
-					<view class="swiper-item" v-for="(item,index) in items">
-						<i class="iconfont" :class="'icon-'+indies[item.type].icon" :style="indies[item.type].color"></i>
-						<text class="info">{{item.category}}</text>
-						<text class="tips">{{item.name}}</text>
+					<view class="swiper-item" v-for="(item,index) in items" @click="changeInfo(item)">
+							<i class="iconfont" :class="'icon-'+indies[item.type].icon" :style="{color:indies[item.type].color}"></i>
+							<text class="info">{{item.category}}</text>
+							<text class="tips">{{item.name}}</text>
 					</view>
 				</swiper-item>
 				<!-- <swiper-item>
 					<view class="swiper-item">2</view>
 				</swiper-item> -->
 			</swiper>
+			
+			
 		</view>
+		</uni-swiper-dot>
+		<weatherPop :isShow="lifePopShow" :info="lifePopInfo" :color="lifePopColor" @changeShow="changePop"></weatherPop>
+		<search :isShow="searchShow"></search>
 	</view>
 </template>
 
 <script>
 	import uCharts from '../../static/js/u-charts.js';
+	import weatherPop from "@/components/weatherPop.vue" 
+	import search from "@/components/search/search.vue"
 	const key = "1e732354397c4d31afea935c736e6df0";
 	let _self,
 		canvaCandle = null;
@@ -195,89 +204,104 @@
 				cHeight: '',
 				pixelRatio: 1,
 				serverData: {},
+				lifeIndex:0,
+				lifePopShow:false,
+				lifePopInfo:{},
+				lifePopColor:"",
+				searchShow:true,
 				indies:{
 					//1 运动
 					1: {
-						color: "color:rgb(230, 217, 157)",
+						color: "rgb(230, 217, 157)",
 						icon: "yundong"
 					},
 					//2 洗车
 					2: {
-						color: "color:rgb(77, 93, 168)",
+						color: "rgb(77, 93, 168)",
 						icon: "xichefuwu"
 					},
 					//3 穿衣
 					3: {
-						color: "color:rgb(225, 164, 196)",
+						color: "rgb(225, 164, 196)",
 						icon: "yifu"
 					},
 					//4 钓鱼
 					4: {
-						color: "color:rgb(163, 223, 212)",
+						color: "rgb(163, 223, 212)",
 						icon: "yu"
 					},
 					//5 紫外线
 					5: {
-						color: "color:rgb(164, 173, 224)",
+						color: "rgb(164, 173, 224)",
 						icon: "ziwaixian"
 					},
 					//6 旅游
 					6: {
-						color: "color:rgb(237, 172, 150)",
+						color: "rgb(237, 172, 150)",
 						icon: "hanglixiang"
 					},
 					//7 花粉过敏
 					7: {
-						color: "color:rgb(164, 173, 224)",
+						color: "rgb(164, 173, 224)",
 						icon: "huaduo"
 					},
 					//8 舒适度
 					8: {
-						color: "color:rgb(158, 196, 140)",
+						color: "rgb(158, 196, 140)",
 						icon: "xiaolian"
 					},
 					//9 感冒
 					9: {
-						color: "color:rgb(223, 199, 156)",
+						color: "rgb(223, 199, 156)",
 						icon: "icon-test"
 					},
 					//10 空气污染扩散条件
 					10: {
-						color: "color:rgb(178, 138, 144)",
+						color: "rgb(178, 138, 144)",
 						icon: "kongqizhiyiban"
 					},
 					//11 空调开启
 					11: {
-						color: "color:rgb(135, 197, 221)",
+						color: "rgb(135, 197, 221)",
 						icon: "kongtiao"
 					},
 					//12 太阳镜
 					12: {
-						color: "color:rgb(149, 163, 219)",
+						color: "rgb(149, 163, 219)",
 						icon: "yanjing"
 					},
 					//13 化妆
 					13: {
-						color: "color:rgb(224, 144, 144)",
+						color: "rgb(224, 144, 144)",
 						icon: "huazhuangpin"
 					},
 					//14 晾晒
 					14: {
-						color: "color:rgb(166, 186, 204)",
+						color: "rgb(166, 186, 204)",
 						icon: "yijia"
 					},
 					//15 交通
 					15: {
-						color: "color:rgb(139, 165, 175)",
+						color: "rgb(139, 165, 175)",
 						icon: "jiaotongtraffic9"
 					},
 					//16 防晒
 					16: {
-						color: "color:rgb(219, 173, 160)",
+						color: "rgb(219, 173, 160)",
 						icon: "rishai"
 					}
+				},
+				lifeDotsStyles:{
+					bottom:5,
+					backgroundColor:"#e3e3e3",
+					border:"0",
+					selectedBackgroundColor:"#cecece"
 				}
 			}
+		},
+		components:{
+			weatherPop,
+			search
 		},
 		filters: {
 			/**
@@ -390,7 +414,7 @@
 					newArray.push(this.lifeInfo.slice(index,index += subLength));
 				}
 				return newArray
-			}
+			},
 		},
 		methods: {
 			authorize() {
@@ -504,8 +528,18 @@
 						return category + ' ' + item.name + ':' + item.data
 					}
 				});
+			},
+			changeCur(e){
+				this.lifeIndex = e.detail.current;
+			},
+			changeInfo(item){
+				this.lifePopInfo = item;
+				this.lifePopColor = this.indies[item.type].color;
+				this.changePop();
+			},
+			changePop(){
+				this.lifePopShow = !this.lifePopShow;
 			}
-
 		}
 	}
 </script>
@@ -529,6 +563,7 @@
 
 	/* #ifdef MP-WEIXIN */
 	.container {
+		position: relative;
 		.section-main {
 			// margin-top: 50px;
 		}
@@ -729,8 +764,12 @@
 				}
 			}
 			&.sec-life {
+				background-color: transparent;
+				border-bottom:0;
 				.life-swiper{
 					height:230px;
+					background: #fff;
+					border-bottom: 1px solid rgba(0,0,0,.3);
 					
 				}
 				.item{
@@ -771,6 +810,7 @@
 					}
 				}
 			}
+
 			.canvasColumn {}
 
 			.charts {
@@ -778,6 +818,22 @@
 				height: 300rpx;
 				background-color: #FFFFFF;
 			}
+			.lifeDot{
+				height: 20px;
+			}
 		}
 	}
+	.life-swiper{
+		/* wx */
+		  wx-swiper .wx-swiper-dot {
+		  	width: 10px;
+		  	height: 3px;
+		  }
+		  wx-swiper .wx-swiper-dot-active {
+			background-color: #000;
+			width: 20px;
+			border-radius: 5px;
+		  }	
+	}
+	
 </style>

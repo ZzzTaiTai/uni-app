@@ -1,0 +1,129 @@
+@charset "UTF-8";
+/**
+ * 这里是uni-app内置的常用样式变量
+ *
+ * uni-app 官方扩展插件及插件市场（https://ext.dcloud.net.cn）上很多三方插件均使用了这些样式变量
+ * 如果你是插件开发者，建议你使用scss预处理，并在插件代码中直接使用这些变量（无需 import 这个文件），方便用户通过搭积木的方式开发整体风格一致的App
+ *
+ */
+/**
+ * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能
+ *
+ * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件
+ */
+/* 颜色变量 */
+/* 行为相关颜色 */
+/* 文字基本颜色 */
+/* 背景颜色 */
+/* 边框颜色 */
+/* 尺寸变量 */
+/* 文字尺寸 */
+/* 图片尺寸 */
+/* Border Radius */
+/* 水平间距 */
+/* 垂直间距 */
+/* 透明度 */
+/* 文章场景相关 */
+.search-box {
+  position: fixed;
+  visibility: hidden;
+  top: 0;
+  left: 0;
+  heigh: 0;
+  width: 100vw;
+  background-color: #fff;
+  z-index: 9999;
+}
+.search-box.show {
+  height: 100vh;
+  visibility: visible;
+}
+.search-box .top {
+  height: 45px;
+  padding: 7px 0;
+  position: relative;
+  border-bottom: 1px solid #eee;
+  box-sizing: border-box;
+}
+.search-box .top .input {
+  position: relative;
+  margin-right: 60px;
+  margin-left: 13px;
+}
+.search-box .top .input .search-icon {
+  position: absolute;
+  height: 14px;
+  width: 14px;
+  top: 8px;
+  left: 10px;
+  background-size: 14px;
+}
+.search-box .top .input .search-input {
+  width: 100%;
+  height: 30px;
+  padding: 5px 0 5px 32px;
+  box-sizing: border-box;
+  line-height: 24px;
+  background: #f2f2f2;
+  border-radius: 44px;
+  font-size: 14px;
+  color: #434343;
+  -webkit-appearance: none;
+  border-width: 0;
+}
+.search-box .cancel {
+  float: right;
+  font-size: 14px;
+  color: #434343;
+  width: 60px;
+  line-height: 30px;
+  text-align: center;
+}
+.search-box .his-hot-city {
+  padding: 12px 13px 7px;
+  position: absolute;
+  top: 45px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  overflow: auto;
+}
+.search-box .title {
+  font-size: 16px;
+  color: #434343;
+  height: 22px;
+  line-height: 20px;
+  margin: 10px 0;
+}
+.search-box .delete {
+  display: block;
+  float: right;
+  background-size: 17px 17px;
+  height: 17px;
+  width: 17px;
+  margin-top: 21px;
+}
+.search-box .city-lists::after {
+  content: "";
+  display: block;
+  height: 0;
+  clear: both;
+}
+.search-box .city-lists ._li {
+  box-sizing: border-box;
+  background: #f2f2f2;
+  border-radius: 44px;
+  padding: 0 16px;
+  width: 32%;
+  height: 32px;
+  line-height: 32px;
+  margin-bottom: 12px;
+  font-size: 14px;
+  color: #434343;
+  text-align: center;
+  float: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+

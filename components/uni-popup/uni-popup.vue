@@ -117,6 +117,7 @@
 			} else {
 				this.duration = 0
 			}
+			
 		},
 		methods: {
 			clear(e) {

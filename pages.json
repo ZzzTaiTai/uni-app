@@ -7,10 +7,7 @@
 			/* #endif */
 		}
 		
-	}   ,{
-            "path" : "components/search/search",
-            "style" : {}
-        }
+	}   
     ],
 	"globalStyle": {
 		/* #ifdef H5 */

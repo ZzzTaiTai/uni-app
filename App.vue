@@ -14,7 +14,7 @@ export default {
 
 <style>
 body{
-	background-color: rgba(0,0,0,.1);
+	background-color: #f4f4f4;
 }
 
 /* 解决头条小程序组件内引入字体不生效的问题 */

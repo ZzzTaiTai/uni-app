@@ -100,7 +100,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "recyclableRender", function() { return recyclableRender; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "components", function() { return components; });
-var components
+var components = {
+  uniSwiperDot: function() {
+    return __webpack_require__.e(/*! import() | components/uni-swiper-dot/uni-swiper-dot */ "components/uni-swiper-dot/uni-swiper-dot").then(__webpack_require__.bind(null, /*! @/components/uni-swiper-dot/uni-swiper-dot.vue */ 27))
+  },
+  search: function() {
+    return __webpack_require__.e(/*! import() | components/search/search */ "components/search/search").then(__webpack_require__.bind(null, /*! @/components/search/search.vue */ 22))
+  }
+}
 var render = function() {
   var _vm = this
   var _h = _vm.$createElement
@@ -157,6 +164,13 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
+
+
+
+
+
+
+
 
 
 
@@ -505,33 +519,50 @@ var _uCharts = _interopRequireDefault(__webpack_require__(/*! ../../static/js/u-
 //
 //
 //
-var key = "1e732354397c4d31afea935c736e6df0";var _self,canvaCandle = null;var _default = { data: function data() {return { curLocation: 1, weatherInfo: null, airInfo: null, hourInfo: [], dailyInfo: [], lifeInfo: [], indicatorDots: false, autoplay: true, interval: 2000, vertical: true, disableTouch: true, cWidth: '', cHeight: '', pixelRatio: 1, serverData: {}, indies: { //1 运动
-        1: { color: "color:rgb(230, 217, 157)", icon: "yundong" }, //2 洗车
-        2: { color: "color:rgb(77, 93, 168)", icon: "xichefuwu" }, //3 穿衣
-        3: { color: "color:rgb(225, 164, 196)", icon: "yifu" }, //4 钓鱼
-        4: { color: "color:rgb(163, 223, 212)", icon: "yu" }, //5 紫外线
-        5: { color: "color:rgb(164, 173, 224)", icon: "ziwaixian" }, //6 旅游
-        6: { color: "color:rgb(237, 172, 150)", icon: "hanglixiang" }, //7 花粉过敏
-        7: { color: "color:rgb(164, 173, 224)", icon: "huaduo" }, //8 舒适度
-        8: { color: "color:rgb(158, 196, 140)", icon: "xiaolian" }, //9 感冒
-        9: { color: "color:rgb(223, 199, 156)", icon: "icon-test" }, //10 空气污染扩散条件
-        10: { color: "color:rgb(178, 138, 144)", icon: "kongqizhiyiban" }, //11 空调开启
-        11: { color: "color:rgb(135, 197, 221)", icon: "kongtiao" }, //12 太阳镜
-        12: { color: "color:rgb(149, 163, 219)", icon: "yanjing" }, //13 化妆
-        13: { color: "color:rgb(224, 144, 144)", icon: "huazhuangpin" }, //14 晾晒
-        14: { color: "color:rgb(166, 186, 204)", icon: "yijia" }, //15 交通
-        15: { color: "color:rgb(139, 165, 175)", icon: "jiaotongtraffic9" }, //16 防晒
-        16: { color: "color:rgb(219, 173, 160)", icon: "rishai" } } };}, filters: { /**
-                                                                                     * @description: 格式化日期时间
-                                                                                     * @param {string} formatDate 日期时间格式：
-                                                                                     * 年 YYYY , 月 MM , 日 DD , 季度 q
-                                                                                     * 周 WW , 星期 WW
-                                                                                     * 时 hh , 分 mm , 秒 ss , 毫秒 hs
-                                                                                     * @param {value} value  new Date()对象
-                                                                                     * @return {string} format 格式化的日期时间
-                                                                                     * ('yyyy-MM-dd WW hh:mm:ss')
-                                                                                     */weatherDate: function weatherDate(value, format) {if (!value) return '';var getDate, nowDate, dateY, dateH;var week = ['日', '一', '二', '三', '四', '五', '六'];if (typeof value !== "number" && !/\+/g.test(value)) {dateY = value.split(/-|\/|T|\s/);var date = new Date();date.setUTCFullYear(dateY[0], dateY[1] - 1, dateY[2]);if (/:/g.test(value)) {dateH = dateY[dateY.length - 1].split(/:/);date.setUTCHours(dateH[0], dateH[1], dateH[2].substring(0, 2), 0);}value = date;}getDate = new Date(value);nowDate = new Date();var fmt;var obj = { 'M+': getDate.getMonth() + 1, 'd+': getDate.getDate(), 'h+': getDate.getHours(), 'm+': getDate.getMinutes(), 's+': getDate.getSeconds(), 'q+': Math.floor((getDate.getMonth() + 3) / 3), 'S': getDate.getMilliseconds() };if (/(y+)/.test(format)) {// RegExp.$1...$9属性的值为String类型，返回上一次正则表达式匹配中，第n个子表达式所匹配的文本。此属性只保存最前面的9个匹配文本。
-        fmt = format.replace(RegExp.$1, (getDate.getFullYear() + '').substr(4 - RegExp.$1.length));}fmt = fmt ? fmt : format;if (/(W+)/.test(fmt)) {var newWeek = null;switch (getDate.getDate() - nowDate.getDate()) {case -1:newWeek = '昨天';break;case 0:newWeek = '今天';break;case 1:newWeek = '明天';break;case 2:newWeek = '后天';break;default:newWeek = "周" + week[getDate.getDay()];}fmt = fmt.replace(RegExp.$1, newWeek);}for (var k in obj) {if (new RegExp('(' + k + ')').test(fmt)) {fmt = fmt.replace(RegExp.$1, RegExp.$1.length === 1 ? obj[k] : ('00' + obj[k]).substr(('' + obj[k]).length));}}return fmt;} }, created: function created() {_self = this;this.authorize();this.serverData = { categories: [], series: [{ name: '最高温度', data: [], color: "#f8bd59", format: function format(val) {return val + '°';} }, { name: '最底温度', data: [],
+//
+//
+//
+//
+//
+//
+//
+var weatherPop = function weatherPop() {__webpack_require__.e(/*! require.ensure | components/weatherPop */ "components/weatherPop").then((function () {return resolve(__webpack_require__(/*! @/components/weatherPop.vue */ 34));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var search = function search() {__webpack_require__.e(/*! require.ensure | components/search/search */ "components/search/search").then((function () {return resolve(__webpack_require__(/*! @/components/search/search.vue */ 22));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var key = "1e732354397c4d31afea935c736e6df0";var _self,canvaCandle = null;var _default = { data: function data() {return { curLocation: 1, weatherInfo: null, airInfo: null, hourInfo: [], dailyInfo: [], lifeInfo: [], indicatorDots: false, autoplay: true, interval: 2000, vertical: true, disableTouch: true, cWidth: '', cHeight: '', pixelRatio: 1, serverData: {}, lifeIndex: 0, lifePopShow: false, lifePopInfo: {}, lifePopColor: "", searchShow: true, indies: { //1 运动
+        1: { color: "rgb(230, 217, 157)", icon: "yundong" }, //2 洗车
+        2: { color: "rgb(77, 93, 168)", icon: "xichefuwu" }, //3 穿衣
+        3: { color: "rgb(225, 164, 196)", icon: "yifu" }, //4 钓鱼
+        4: { color: "rgb(163, 223, 212)", icon: "yu" }, //5 紫外线
+        5: { color: "rgb(164, 173, 224)", icon: "ziwaixian" }, //6 旅游
+        6: { color: "rgb(237, 172, 150)", icon: "hanglixiang" }, //7 花粉过敏
+        7: { color: "rgb(164, 173, 224)", icon: "huaduo" }, //8 舒适度
+        8: { color: "rgb(158, 196, 140)", icon: "xiaolian" }, //9 感冒
+        9: { color: "rgb(223, 199, 156)", icon: "icon-test" }, //10 空气污染扩散条件
+        10: { color: "rgb(178, 138, 144)", icon: "kongqizhiyiban" }, //11 空调开启
+        11: { color: "rgb(135, 197, 221)", icon: "kongtiao" }, //12 太阳镜
+        12: { color: "rgb(149, 163, 219)", icon: "yanjing" }, //13 化妆
+        13: { color: "rgb(224, 144, 144)", icon: "huazhuangpin" }, //14 晾晒
+        14: { color: "rgb(166, 186, 204)", icon: "yijia" }, //15 交通
+        15: { color: "rgb(139, 165, 175)", icon: "jiaotongtraffic9" }, //16 防晒
+        16: { color: "rgb(219, 173, 160)", icon: "rishai" } }, lifeDotsStyles: { bottom: 5, backgroundColor: "#e3e3e3", border: "0", selectedBackgroundColor: "#cecece" } };}, components: { weatherPop: weatherPop, search: search }, filters: { /**
+                                                                                                                                                                                                                                                   * @description: 格式化日期时间
+                                                                                                                                                                                                                                                   * @param {string} formatDate 日期时间格式：
+                                                                                                                                                                                                                                                   * 年 YYYY , 月 MM , 日 DD , 季度 q
+                                                                                                                                                                                                                                                   * 周 WW , 星期 WW
+                                                                                                                                                                                                                                                   * 时 hh , 分 mm , 秒 ss , 毫秒 hs
+                                                                                                                                                                                                                                                   * @param {value} value  new Date()对象
+                                                                                                                                                                                                                                                   * @return {string} format 格式化的日期时间
+                                                                                                                                                                                                                                                   * ('yyyy-MM-dd WW hh:mm:ss')
+                                                                                                                                                                                                                                                   */weatherDate: function weatherDate(value, format) {if (!value) return '';var getDate, nowDate, dateY, dateH;var week = ['日', '一', '二', '三', '四', '五', '六'];if (typeof value !== "number" && !/\+/g.test(value)) {dateY = value.split(/-|\/|T|\s/);var date = new Date();date.setUTCFullYear(dateY[0], dateY[1] - 1, dateY[2]);if (/:/g.test(value)) {dateH = dateY[dateY.length - 1].split(/:/);date.setUTCHours(dateH[0], dateH[1], dateH[2].substring(0, 2), 0);}value = date;}getDate = new Date(value);nowDate = new Date();var fmt;var obj = { 'M+': getDate.getMonth() + 1, 'd+': getDate.getDate(), 'h+': getDate.getHours(), 'm+': getDate.getMinutes(), 's+': getDate.getSeconds(), 'q+': Math.floor((getDate.getMonth() + 3) / 3), 'S': getDate.getMilliseconds() };if (/(y+)/.test(format)) {// RegExp.$1...$9属性的值为String类型，返回上一次正则表达式匹配中，第n个子表达式所匹配的文本。此属性只保存最前面的9个匹配文本。
+        fmt = format.replace(RegExp.$1, (getDate.getFullYear() + '').substr(4 - RegExp.$1.length));}fmt = fmt ? fmt : format;if (/(W+)/.test(fmt)) {var newWeek = null;switch (getDate.getDate() - nowDate.getDate()) {case -1:newWeek = '昨天';break;case 0:newWeek = '今天';break;case 1:newWeek = '明天';break;case 2:newWeek = '后天';break;default:newWeek = "周" + week[getDate.getDay()];}fmt = fmt.replace(RegExp.$1, newWeek);}for (var k in obj) {if (new RegExp('(' + k + ')').test(fmt)) {fmt = fmt.replace(RegExp.$1, RegExp.$1.length === 1 ? obj[k] : ('00' + obj[k]).substr(('' + obj[k]).length));}}return fmt;} }, created: function created() {_self = this;this.authorize();this.serverData = { categories: [],
+      series: [{
+        name: '最高温度',
+        data: [],
+        color: "#f8bd59",
+        format: function format(val) {
+          return val + '°';
+        } },
+      {
+        name: '最底温度',
+        data: [],
         color: "#59c5ec",
         format: function format(val) {
           return val + '°';
@@ -662,6 +693,17 @@ var key = "1e732354397c4d31afea935c736e6df0";var _self,canvaCandle = null;var _d
           return category + ' ' + item.name + ':' + item.data;
         } });
 
+    },
+    changeCur: function changeCur(e) {
+      this.lifeIndex = e.detail.current;
+    },
+    changeInfo: function changeInfo(item) {
+      this.lifePopInfo = item;
+      this.lifePopColor = this.indies[item.type].color;
+      this.changePop();
+    },
+    changePop: function changePop() {
+      this.lifePopShow = !this.lifePopShow;
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
